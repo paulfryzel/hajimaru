@@ -1,0 +1,14 @@
+{
+    "name": "genode",
+    "description": "A project generator for node",
+    "author": "Paul Fryzel <paul.fryzel@gmail.com>",
+    "version": "0.0.1",
+    "keywords": [
+        "genode",
+        "project",
+        "generator"
+    ],
+    "dependencies": {
+        "underscore": "1.4.2"
+    }
+}
