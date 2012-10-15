@@ -48,9 +48,12 @@ var index = { 'index.js' : [
   ].join(eol)
 };
 
-var package = { 'package.json' : JSON.stringify({
+var pkg = { 'package.json' : JSON.stringify({
     name: project,
-    version: '0.0.1'
+    version: '0.0.1',
+    description: 'todo',
+    author: 'todo',
+    main: 'index.js'
   }, null, 4)
 };
 
@@ -66,7 +69,7 @@ application[libUnproject] = [
 ].join(eol);
 
 directories = ['lib'];
-files = _.extend(gitignore, index, package, readme, application);
+files = _.extend(gitignore, index, pkg, readme, application);
 
 directories.forEach(function(subdir) {
   mkdirp.sync(project + '/' + subdir, 0755, function(err) {
