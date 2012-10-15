@@ -48,6 +48,15 @@ files['.gitignore'] = [
 ].join(eol);
 
 files['.npmignore'] = [
+  '.DS_Store',
+  'lib-cov',
+  'coverage.html',
+  '.git*',
+  'docs/',
+  'examples/',
+  'support/',
+  'test/',
+  'testing.js'
 ].join(eol);
 
 files['index.js'] = [
