@@ -2,6 +2,12 @@
 
 A project generator for node
 
+npm: [https://npmjs.org/package/genode](https://npmjs.org/package/genode)
+
+## Install
+
+    npm install -g genode
+
 ## Usage
 
     Usage: genode <project>
