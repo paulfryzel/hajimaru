@@ -2,7 +2,7 @@
     "name": "genode",
     "description": "A project generator for node",
     "author": "Paul Fryzel <paul.fryzel@gmail.com>",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "keywords": [
         "genode",
         "project",
@@ -13,7 +13,6 @@
         "mkdirp": "0.3.4"
     },
     "repository": "git://github.com/paulfryzel/genode",
-    "main": "index",
     "bin": { "genode": "./bin/genode" },
     "engines": { "node": "*" }
 }

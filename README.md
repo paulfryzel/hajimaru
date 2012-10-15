@@ -4,34 +4,55 @@ A project generator for node
 
 ## Usage
 
-  ````
-  Usage: genode <project>
+    Usage: genode <project>
 
-  Options:
+    Options:
 
-    -h, --help	 output usage information
-    -V, --version  output the version number
-  ````
+      -h, --help          output usage information
+      -V, --version       output the version number
+      -c, --coffeescript  enable coffeescript support
 
-## Example
+## Examples
 
-  ````
-  $ genode hello-genode && cd hello-genode
-  $ echo "console.log('hello genode\!');" >> lib/hello_genode.js
-  $ node index
-  ````
+### Hello genode!
 
-  ````
-  $ tree -a hello-genode/
-  hello-genode/
-  ├── README.md
-  ├── index.js
-  ├── lib
-  │   └── hello_genode.js
-  └── package.json
+    $ genode hello-genode && cd hello-genode
+    $ echo "console.log('Hello genode\!');" >> lib/hello_genode.js
+    $ node index
 
-  1 directory, 4 files
-  ````
+#### Project structure
+
+    $ tree -a hello-genode/
+    hello-genode/
+    ├── .gitignore
+    ├── .npmignore
+    ├── README.md
+    ├── index.js
+    ├── lib
+    │   └── hello_genode.js
+    └── package.json
+
+    1 directory, 6 files
+
+### Hello genode! w/ CoffeeScript
+
+    $ genode -c hello-genode && cd hello-genode && npm install
+    $ echo "console.log 'Hello genode\!'" >> lib/hello_genode.coffee
+    $ node index
+
+#### Project structure
+
+    $ tree -a hello-genode/
+    hello-genode/
+    ├── .gitignore
+    ├── .npmignore
+    ├── README.md
+    ├── index.js
+    ├── lib
+    │   └── hello_genode.coffee
+    └── package.json
+
+    1 directory, 6 files
 
 ## License
 

@@ -12,6 +12,7 @@ var fs = require('fs'),
 program
   .version(version)
   .usage('<project>')
+  .option('-c, --coffeescript', 'enable coffeescript support')
   .parse(process.argv);
 
 if (program.args.length !== 1) {
@@ -22,9 +23,15 @@ if (program.args.length !== 1) {
 var project = program.args[0];
 var unproject = project.replace(/-/g, '_');
 var eol = 'win32' === os.platform() ? '\r\n' : '\n';
+var ext = program.coffeescript ? '.coffee' : '.js';
 
 var directories = ['lib'];
 var files = {};
+var dependencies = {};
+
+if (program.coffeescript) {
+  dependencies['coffee-script'] = '*';
+}
 
 files['.gitignore'] = [
   '.DS_store',
@@ -63,19 +70,28 @@ files['index.js'] = [
   'module.exports = require(\'./lib/' + unproject + '\');'
 ].join(eol);
 
+if (program.coffeescript) {
+  var temp = files['index.js'];
+  files['index.js'] = [
+    'require("coffee-script");',
+    temp
+  ].join(eol);
+}
+
 files['package.json'] = JSON.stringify({
   name: project,
   version: '0.0.1',
   description: 'todo',
   author: 'todo',
-  main: 'index.js'
+  main: 'index.js',
+  dependencies: dependencies
 }, null, 4);
 
 files['README.md'] = [
   '# ' + project
 ].join(eol);
 
-files['lib/' + unproject + '.js'] = [
+files['lib/' + unproject + ext] = [
   ''
 ].join(eol);
 
