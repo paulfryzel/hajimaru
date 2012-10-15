@@ -9,6 +9,12 @@
         "generator"
     ],
     "dependencies": {
+        "commander": "1.0.5",
+        "mkdirp": "0.3.4",
         "underscore": "1.4.2"
-    }
+    },
+    "repository": "git://github.com/paulfryzel/genode",
+    "main": "index",
+    "bin": { "genode": "./bin/genode" },
+    "engines": { "node": "*" }
 }

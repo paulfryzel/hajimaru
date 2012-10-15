@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    os = require('os'),
+    mkdirp = require('mkdirp'),
+    program = require('commander'),
+    pkg = require('../package.json'),
+    version = pkg.version,
+    _ = require('underscore');
+
+program
+  .version(version)
+  .usage('<project>')
+  .parse(process.argv);
+
+if (program.args.length != 1) {
+  console.log(program.help());
+  return;
+}
+
+var project = program.args[0];
+var unproject = project.replace('-', '_');
+var eol = 'win32' == os.platform() ? '\r\n' : '\n';
+
+var gitignore = { '.gitignore' : [
+    'lib-cov',
+    '*.seed',
+    '*.log',
+    '*.csv',
+    '*.dat',
+    '*.out',
+    '*.pid',
+    '*.swp',
+    '*.swo',
+    '*.gz',
+    '',
+    'pids',
+    'logs',
+    'results',
+    '',
+    'npm-debug.log',
+    'node_modules/'
+  ].join(eol)
+};
+
+var index = { 'index.js' : [
+    'module.exports = require(\'./lib/' + unproject + '\');'
+  ].join(eol)
+};
+
+var package = { 'package.json' : JSON.stringify({
+    name: project,
+    version: '0.0.1'
+  }, null, 4)
+};
+
+var readme = { 'README.md' : [
+    '# ' + project
+  ].join(eol)
+};
+
+var libUnproject = 'lib/' + unproject + '.js';
+var application = {};
+application[libUnproject] = [
+    ''
+].join(eol);
+
+directories = ['lib'];
+files = _.extend(gitignore, index, package, readme, application);
+
+directories.forEach(function(subdir) {
+  mkdirp.sync(project + '/' + subdir, 0755, function(err) {
+    if (err) throw err;
+  });
+});
+
+Object.keys(files).forEach(function(file) {
+  fs.writeFile(project + '/' + file, files[file], function(err) {
+    if (err) throw err;
+  });
+});
