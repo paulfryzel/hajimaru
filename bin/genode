@@ -1,84 +1,87 @@
 #!/usr/bin/env node
 
+"use strict";
+
 var fs = require('fs'),
     os = require('os'),
     mkdirp = require('mkdirp'),
     program = require('commander'),
     pkg = require('../package.json'),
-    version = pkg.version,
-    _ = require('underscore');
+    version = pkg.version;
 
 program
   .version(version)
   .usage('<project>')
   .parse(process.argv);
 
-if (program.args.length != 1) {
+if (program.args.length !== 1) {
   console.log(program.help());
   return;
 }
 
 var project = program.args[0];
-var unproject = project.replace('-', '_');
-var eol = 'win32' == os.platform() ? '\r\n' : '\n';
+var unproject = project.replace(/-/g, '_');
+var eol = 'win32' === os.platform() ? '\r\n' : '\n';
 
-var gitignore = { '.gitignore' : [
-    'lib-cov',
-    '*.seed',
-    '*.log',
-    '*.csv',
-    '*.dat',
-    '*.out',
-    '*.pid',
-    '*.swp',
-    '*.swo',
-    '*.gz',
-    '',
-    'pids',
-    'logs',
-    'results',
-    '',
-    'npm-debug.log',
-    'node_modules/'
-  ].join(eol)
-};
+var directories = ['lib'];
+var files = {};
 
-var index = { 'index.js' : [
-    'module.exports = require(\'./lib/' + unproject + '\');'
-  ].join(eol)
-};
-
-var pkg = { 'package.json' : JSON.stringify({
-    name: project,
-    version: '0.0.1',
-    description: 'todo',
-    author: 'todo',
-    main: 'index.js'
-  }, null, 4)
-};
-
-var readme = { 'README.md' : [
-    '# ' + project
-  ].join(eol)
-};
-
-var libUnproject = 'lib/' + unproject + '.js';
-var application = {};
-application[libUnproject] = [
-    ''
+files['.gitignore'] = [
+  '.DS_store',
+  'lib-cov',
+  '*.seed',
+  '*.log',
+  '*.csv',
+  '*.dat',
+  '*.out',
+  '*.pid',
+  '*.swp',
+  '*.swo',
+  '*.gz',
+  '',
+  'pids',
+  'logs',
+  'results',
+  '',
+  'npm-debug.log',
+  'node_modules/'
 ].join(eol);
 
-directories = ['lib'];
-files = _.extend(gitignore, index, pkg, readme, application);
+files['.npmignore'] = [
+].join(eol);
+
+files['index.js'] = [
+  'module.exports = require(\'./lib/' + unproject + '\');'
+].join(eol);
+
+files['package.json'] = JSON.stringify({
+  name: project,
+  version: '0.0.1',
+  description: 'todo',
+  author: 'todo',
+  main: 'index.js'
+}, null, 4);
+
+files['README.md'] = [
+  '# ' + project
+].join(eol);
+
+files['lib/' + unproject + '.js'] = [
+  ''
+].join(eol);
 
 directories.forEach(function(subdir) {
-  mkdirp.sync(project + '/' + subdir, 0755, function(err) {
-    if (err) throw err;
+  mkdirp.sync(project + '/' + subdir, '0755', function(err) {
+    if (err) {
+      throw err;
+    }
   });
 });
 
 Object.keys(files).forEach(function(file) {
   fs.writeFile(project + '/' + file, files[file], function(err) {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
   });
 });
