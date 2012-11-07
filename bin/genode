@@ -81,9 +81,12 @@ if (program.coffeescript) {
 files['package.json'] = JSON.stringify({
   name: project,
   version: '0.0.1',
-  description: 'todo',
-  author: 'todo',
+  description: '',
   main: 'index.js',
+  scripts: { 'test': ''},
+  repository: '',
+  author: '',
+  license: '',
   dependencies: dependencies
 }, null, 4);
 
