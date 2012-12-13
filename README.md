@@ -24,7 +24,7 @@ npm: [https://npmjs.org/package/genode](https://npmjs.org/package/genode)
 
     $ genode hello-genode && cd hello-genode
     $ echo "console.log('Hello genode\!');" >> lib/hello_genode.js
-    $ node index
+    $ npm start
 
 #### Project structure
 
@@ -44,7 +44,7 @@ npm: [https://npmjs.org/package/genode](https://npmjs.org/package/genode)
 
     $ genode -c hello-genode && cd hello-genode && npm install
     $ echo "console.log 'Hello genode\!'" >> lib/hello_genode.coffee
-    $ node index
+    $ npm start
 
 #### Project structure
 

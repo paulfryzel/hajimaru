@@ -2,7 +2,7 @@
     "name": "genode",
     "description": "A project generator for node",
     "author": "Paul Fryzel <paul.fryzel@gmail.com>",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "keywords": [
         "genode",
         "project",

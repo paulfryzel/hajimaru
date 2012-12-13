@@ -83,7 +83,10 @@ files['package.json'] = JSON.stringify({
   version: '0.0.1',
   description: '',
   main: 'index.js',
-  scripts: { 'test': ''},
+  scripts: {
+    'start': 'node index',
+    'test': ''
+  },
   repository: '',
   author: '',
   license: '',
