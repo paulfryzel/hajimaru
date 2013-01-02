@@ -1,16 +1,16 @@
-# genode
+# 始まる hajimaru
 
 A project generator for node
 
-npm: [https://npmjs.org/package/genode](https://npmjs.org/package/genode)
+npm: [https://npmjs.org/package/hajimaru](https://npmjs.org/package/hajimaru)
 
 ## Install
 
-    npm install -g genode
+    npm install -g hajimaru
 
 ## Usage
 
-    Usage: genode <project>
+    Usage: hajimaru <project>
 
     Options:
 
@@ -20,42 +20,42 @@ npm: [https://npmjs.org/package/genode](https://npmjs.org/package/genode)
 
 ## Examples
 
-### Hello genode!
+### Hello hajimaru!
 
-    $ genode hello-genode && cd hello-genode
-    $ echo "console.log('Hello genode\!');" >> lib/hello_genode.js
+    $ hajimaru hello-hajimaru && cd hello-hajimaru
+    $ echo "console.log('Hello hajimaru\!');" >> lib/hello_hajimaru.js
     $ npm start
 
 #### Project structure
 
-    $ tree -a hello-genode/
-    hello-genode/
+    $ tree -a hello-hajimaru/
+    hello-hajimaru/
     ├── .gitignore
     ├── .npmignore
     ├── README.md
     ├── index.js
     ├── lib
-    │   └── hello_genode.js
+    │   └── hello_hajimaru.js
     └── package.json
 
     1 directory, 6 files
 
-### Hello genode! w/ CoffeeScript
+### Hello hajimaru! w/ CoffeeScript
 
-    $ genode -c hello-genode && cd hello-genode && npm install
-    $ echo "console.log 'Hello genode\!'" >> lib/hello_genode.coffee
+    $ hajimaru -c hello-hajimaru && cd hello-hajimaru && npm install
+    $ echo "console.log 'Hello hajimaru\!'" >> lib/hello_hajimaru.coffee
     $ npm start
 
 #### Project structure
 
-    $ tree -a hello-genode/
-    hello-genode/
+    $ tree -a hello-hajimaru/
+    hello-hajimaru/
     ├── .gitignore
     ├── .npmignore
     ├── README.md
     ├── index.js
     ├── lib
-    │   └── hello_genode.coffee
+    │   └── hello_hajimaru.coffee
     └── package.json
 
     1 directory, 6 files
