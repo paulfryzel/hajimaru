@@ -25,7 +25,7 @@ var unproject = project.replace(/-/g, '_');
 var eol = 'win32' === os.platform() ? '\r\n' : '\n';
 var ext = program.coffeescript ? '.coffee' : '.js';
 
-var directories = ['lib'];
+var directories = ['lib', 'test'];
 var files = {};
 var dependencies = {};
 
@@ -98,6 +98,10 @@ files['README.md'] = [
 ].join(eol);
 
 files['lib/' + unproject + ext] = [
+  ''
+].join(eol);
+
+files['test/' + unproject + '_test' + ext] = [
   ''
 ].join(eol);
 

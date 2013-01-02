@@ -36,9 +36,11 @@ npm: [https://npmjs.org/package/hajimaru](https://npmjs.org/package/hajimaru)
     ├── index.js
     ├── lib
     │   └── hello_hajimaru.js
-    └── package.json
+    ├── package.json
+    └── test
+        └── hello_hajimaru_test.js
 
-    1 directory, 6 files
+    2 directories, 7 files
 
 ### Hello hajimaru! w/ CoffeeScript
 
@@ -56,9 +58,11 @@ npm: [https://npmjs.org/package/hajimaru](https://npmjs.org/package/hajimaru)
     ├── index.js
     ├── lib
     │   └── hello_hajimaru.coffee
-    └── package.json
+    ├── package.json
+    └── test
+        └── hello_hajimaru_test.coffee
 
-    1 directory, 6 files
+    2 directories, 7 files
 
 ## License
 
