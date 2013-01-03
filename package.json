@@ -2,7 +2,7 @@
     "name": "hajimaru",
     "description": "A project generator for node",
     "author": "Paul Fryzel <paul.fryzel@gmail.com>",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "keywords": [
         "hajimaru",
         "begin",
@@ -10,10 +10,20 @@
         "generator"
     ],
     "dependencies": {
-        "commander": "1.0.5",
+        "commander": "1.1.1",
         "mkdirp": "0.3.4"
     },
+    "devDependencies": {
+        "vows": "0.7.0"
+    },
     "repository": "git://github.com/paulfryzel/hajimaru",
-    "bin": { "hajimaru": "./bin/hajimaru" },
-    "engines": { "node": "*" }
+    "bin": {
+        "hajimaru": "./bin/hajimaru"
+    },
+    "scripts": {
+        "test": "vows --spec"
+    },
+    "engines": {
+        "node": "*"
+    }
 }

@@ -2,11 +2,10 @@
 
 "use strict";
 
-var fs = require('fs'),
+var hajimaru = require(__dirname + '/../lib/hajimaru'),
     os = require('os'),
-    mkdirp = require('mkdirp'),
+    pkg = require(__dirname + '/../package.json'),
     program = require('commander'),
-    pkg = require('../package.json'),
     version = pkg.version;
 
 program
@@ -20,14 +19,17 @@ if (program.args.length !== 1) {
   return;
 }
 
-var project = program.args[0];
-var unproject = project.replace(/-/g, '_');
-var eol = 'win32' === os.platform() ? '\r\n' : '\n';
-var ext = program.coffeescript ? '.coffee' : '.js';
-
+var project = {};
 var directories = ['lib', 'test'];
 var files = {};
 var dependencies = {};
+var eol = 'win32' === os.platform() ? '\r\n' : '\n';
+
+project['root'] = program.args[0];
+project['unroot'] = project['root'].replace(/-/g, '_');
+project['ext'] = program.coffeescript ? '.coffee' : '.js';
+project['directories'] = directories;
+project['files'] = files;
 
 if (program.coffeescript) {
   dependencies['coffee-script'] = '*';
@@ -67,7 +69,7 @@ files['.npmignore'] = [
 ].join(eol);
 
 files['index.js'] = [
-  'module.exports = require(\'./lib/' + unproject + '\');'
+  'module.exports = require(\'./lib/' + project['unroot'] + '\');'
 ].join(eol);
 
 if (program.coffeescript) {
@@ -79,7 +81,7 @@ if (program.coffeescript) {
 }
 
 files['package.json'] = JSON.stringify({
-  name: project,
+  name: project['root'],
   version: '0.0.1',
   description: '',
   main: 'index.js',
@@ -94,29 +96,15 @@ files['package.json'] = JSON.stringify({
 }, null, 4);
 
 files['README.md'] = [
-  '# ' + project
+  '# ' + project['root']
 ].join(eol);
 
-files['lib/' + unproject + ext] = [
+files['lib/' + project['unroot'] + project['ext']] = [
   ''
 ].join(eol);
 
-files['test/' + unproject + '_test' + ext] = [
+files['test/' + project['unroot'] + '_test' + project['ext']] = [
   ''
 ].join(eol);
 
-directories.forEach(function(subdir) {
-  mkdirp.sync(project + '/' + subdir, '0755', function(err) {
-    if (err) {
-      throw err;
-    }
-  });
-});
-
-Object.keys(files).forEach(function(file) {
-  fs.writeFile(project + '/' + file, files[file], function(err) {
-    if (err) {
-      throw err;
-    }
-  });
-});
+hajimaru.generate(project);
