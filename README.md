@@ -1,8 +1,12 @@
-# 始まる hajimaru
+# 始まる hajimaru(1)
 
-A project generator for node
+A project generator for nodejs [![Build Status](https://secure.travis-ci.org/paulfryzel/hajimaru.png?branch=master)](http://travis-ci.org/paulfryzel/hajimaru)
 
 npm: [https://npmjs.org/package/hajimaru](https://npmjs.org/package/hajimaru)
+
+## Requirements
+
+[nodejs](http://nodejs.org/) &gt;=0.6
 
 ## Install
 
@@ -63,6 +67,10 @@ npm: [https://npmjs.org/package/hajimaru](https://npmjs.org/package/hajimaru)
         └── hello_hajimaru_test.coffee
 
     2 directories, 7 files
+
+## Notes
+
+You are probably better off using [gruntjs](http://gruntjs.com/) or [npm init(1)](https://npmjs.org/doc/init.html) for project generation/management. Nonetheless, the hajimaru application fit a specific use-case for me and served as a brief foray into the land of nodejs.
 
 ## License
 

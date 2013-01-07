@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+/*jslint node: true */
 "use strict";
 
 var hajimaru = require(__dirname + '/../lib/hajimaru'),
@@ -25,11 +26,11 @@ var files = {};
 var dependencies = {};
 var eol = 'win32' === os.platform() ? '\r\n' : '\n';
 
-project['root'] = program.args[0];
-project['unroot'] = project['root'].replace(/-/g, '_');
-project['ext'] = program.coffeescript ? '.coffee' : '.js';
-project['directories'] = directories;
-project['files'] = files;
+project.root = program.args[0];
+project.unroot = project.root.replace(/-/g, '_');
+project.ext = program.coffeescript ? '.coffee' : '.js';
+project.directories = directories;
+project.files = files;
 
 if (program.coffeescript) {
   dependencies['coffee-script'] = '*';
@@ -69,7 +70,7 @@ files['.npmignore'] = [
 ].join(eol);
 
 files['index.js'] = [
-  'module.exports = require(\'./lib/' + project['unroot'] + '\');'
+  'module.exports = require(\'./lib/' + project.unroot + '\');'
 ].join(eol);
 
 if (program.coffeescript) {
@@ -81,7 +82,7 @@ if (program.coffeescript) {
 }
 
 files['package.json'] = JSON.stringify({
-  name: project['root'],
+  name: project.root,
   version: '0.0.1',
   description: '',
   main: 'index.js',
@@ -96,14 +97,14 @@ files['package.json'] = JSON.stringify({
 }, null, 4);
 
 files['README.md'] = [
-  '# ' + project['root']
+  '# ' + project.root
 ].join(eol);
 
-files['lib/' + project['unroot'] + project['ext']] = [
+files['lib/' + project.unroot + project.ext] = [
   ''
 ].join(eol);
 
-files['test/' + project['unroot'] + '_test' + project['ext']] = [
+files['test/' + project.unroot + '_test' + project.ext] = [
   ''
 ].join(eol);
 
