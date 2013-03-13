@@ -2,7 +2,7 @@
     "name": "hajimaru",
     "description": "A project generator for nodejs",
     "author": "Paul Fryzel <paul.fryzel@gmail.com>",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "keywords": [
         "hajimaru",
         "begin",
@@ -14,11 +14,11 @@
     ],
     "dependencies": {
         "commander": "1.1.1",
-        "mkdirp": "0.3.4"
+        "mkdirp": "0.3.5"
     },
     "devDependencies": {
         "mocks": "0.0.10",
-        "sinon": "1.5.2",
+        "sinon": "1.6.0",
         "vows": "0.7.0"
     },
     "repository": "git://github.com/paulfryzel/hajimaru",
