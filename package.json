@@ -2,7 +2,7 @@
     "name": "hajimaru",
     "description": "A project generator for nodejs",
     "author": "Paul Fryzel <paul.fryzel@gmail.com>",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "keywords": [
         "hajimaru",
         "begin",
