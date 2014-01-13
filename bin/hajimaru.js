@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*jslint node: true */
-"use strict";
+'use strict';
 
 var hajimaru = require(__dirname + '/../lib/hajimaru'),
     os = require('os'),
@@ -70,7 +70,9 @@ files['.npmignore'] = [
 ].join(eol);
 
 files['index.js'] = [
-  'module.exports = require(\'./lib/' + project.unroot + '\');'
+  '\'use strict\';',
+  '',
+  'module.exports = require(\'./lib/index\');'
 ].join(eol);
 
 if (program.coffeescript) {
@@ -88,7 +90,7 @@ files['package.json'] = JSON.stringify({
   main: 'index.js',
   scripts: {
     'start': 'node index',
-    'test': ''
+    'test': 'node test/index'
   },
   repository: '',
   author: '',
@@ -100,12 +102,16 @@ files['README.md'] = [
   '# ' + project.root
 ].join(eol);
 
-files['lib/' + project.unroot + project.ext] = [
-  ''
+files['lib/index' + project.ext] = [
+  '\'use strict\';'
 ].join(eol);
 
-files['test/' + project.unroot + '_test' + project.ext] = [
-  ''
+files['test/index' + project.ext] = [
+  '\'use strict\';',
+  '',
+  'var assert = require(\'assert\');',
+  '',
+  'module.exports = function() { assert(1 > 0); };'
 ].join(eol);
 
 hajimaru.generate(project);
