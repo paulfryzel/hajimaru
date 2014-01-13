@@ -72,7 +72,7 @@ files['.npmignore'] = [
 files['index.js'] = [
   '\'use strict\';',
   '',
-  'module.exports = require(\'./lib/index\');'
+  'module.exports = require(\'./lib\');'
 ].join(eol);
 
 if (program.coffeescript) {
@@ -110,8 +110,9 @@ files['test/index' + project.ext] = [
   '\'use strict\';',
   '',
   'var assert = require(\'assert\');',
+  'var ' + project.unroot + ' = require(\'..\');',
   '',
-  'module.exports = function() { assert(1 > 0); };'
+  'assert(typeof ' + project.unroot + ' === \'object\');'
 ].join(eol);
 
 hajimaru.generate(project);
